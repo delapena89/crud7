@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
+var mongoose = require('mongoose');
 
 
 // *** routes *** //
@@ -14,6 +15,19 @@ var routes = require('./routes/index.js');
 
 // *** express instance *** //
 var app = express();
+
+// *** database config *** //
+config = require('./_config');
+
+// ** mongoose connection ** //
+mongoose.connect(config.mongoURI[app.settings.env],
+  function(err, data) {
+    if(err){
+      consoloe.log('Failedto connect to DB: ' + err);
+    } else {
+      console.log('Succes! Connect to: ', config.mongURI[app.setings.env]);
+    }
+  });
 
 
 // *** view engine *** //
