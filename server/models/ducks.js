@@ -3,9 +3,9 @@ var Schema = mongoose.Schema;
 
 var duckSchema = new Schema({
   name: String,
-  Age: Number
+  age: Number
 });
 
 
 // "ducks" is the name of the collection
-module.exports = mongoose.models('ducks', duckSchema);
+module.exports = mongoose.model("ducks", duckSchema);

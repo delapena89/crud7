@@ -5,9 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var swig = require('swig');
+// var swig = require('swig');
 var mongoose = require('mongoose');
-
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -16,24 +15,23 @@ var routes = require('./routes/index.js');
 // *** express instance *** //
 var app = express();
 
-// *** database config *** //
-config = require('./_config');
+// *** mongoose connection *** //
+var config = require('./_config.js');
 
-// ** mongoose connection ** //
 mongoose.connect(config.mongoURI[app.settings.env],
-  function(err, data) {
+  function(err, data){
     if(err){
-      consoloe.log('Failedto connect to DB: ' + err);
+      console.log('Failed to connect to DB: '+err);
     } else {
-      console.log('Succes! Connect to: ', config.mongURI[app.setings.env]);
+      console.log('Success! Connect to:', config.mongoURI[app.settings.env]);
     }
   });
 
 
 // *** view engine *** //
-var swig = new swig.Swig();
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+// var swig = new swig.Swig();
+// app.engine('html', swig.renderFile);
+// app.set('view engine', 'html');
 
 
 // *** static directory *** //
@@ -49,6 +47,9 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 
 
 // *** main routes *** //
+app.get('/', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../client/public/', 'index.html'));
+});
 app.use('/', routes);
 
 

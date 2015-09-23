@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+    <label for="name">Duck Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Daffy" ng-model='duck.name'>
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age" placeholder="700" ng-model='duck.age'>
+  </div>
+  <button type="submit" class="btn btn-default" ng-click='postDuck()'>Submit</button>
+</form>
+
+<div>
+  <button class='btn btn-default' ng-click='getDucks()'>GET All THE DUCKS!</button>
+  <display-ducks></display-ducks>
+</div>
