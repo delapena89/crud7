@@ -7,7 +7,7 @@ router.get('/duck/:id', function(req, res, next) {
     .then(function(results) {
       res.json(results);
     }).catch(function(results){
-      res.json({'message': results});
+      res.json({'message'results});
     }).done();
 });
 
